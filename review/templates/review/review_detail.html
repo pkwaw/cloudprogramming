@@ -1,0 +1,30 @@
+{% extends 'review/base.html' %}
+
+{% block title %}
+    <title>Review - {{ review.name }}</title>
+{% endblock %}
+{% block content %}
+    {% if user.is_authenticated and user == review.author %}
+        <a class="btn btn-info btn-sm float-right" href="/review/update_review/{{ review.pk }}" role="button">
+            <i class="fas fa-pen"></i>&nbsp;&nbsp;
+            Edit Review
+        </a>
+
+    {% endif %}
+
+    <div class="col-lg-8">
+        <h1 class="mt-4">{{ review.name }}</h1>
+        <p class="lead">
+            by
+            <a href="#">{{ review.author }}</a>
+        </p>
+
+        <hr>
+
+        <p>{{ review.get_markdown_review | safe }}</p>
+
+        <p>{{ review.description }}</p>
+
+        <p>{{ review.review }}</p>
+    </div>
+{% endblock %}

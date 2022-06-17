@@ -1,0 +1,44 @@
+{% extends 'review/base.html' %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+        {% if user.is_superuser or user.is_staff %}
+            <a class="btn btn-info btn-sm float-right" href="create_review/" role="button">
+                <i class="fas fa-pen"></i>&nbsp;&nbsp;New Review
+            </a>
+        {% endif %}
+    {% endif %}
+    <h1>Review
+        {% if tags %}
+            with tag '{{ tag }}' {% endif %}
+    </h1>
+
+
+    {% for r in review_list %}
+        <div class="card mb-4">
+            <div class="card-body">
+                <h2 class="card-title">{{ r.name }}</h2>
+                <p class="card-text">{{ r.description }}</p>
+                <p class="card-text">{{ r.get_content_markdown | truncatewords_html:45 | safe }}</p>
+                <a href="{{ r.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
+                {% if r.tags.exists %}
+                    <br/>
+                    <i class="fas fa-tags"></i>
+                    {% for tag in r.tags.iterator %}
+                        <a href={{ tag.get_absolute_url }}>{{ tag }}</a>
+                    {% endfor %}
+                    <br/>
+                    <br/>
+                {% endif %}
+            </div>
+            <div class="card-footer text-muted">
+                Review on {{ r.created }} by
+                <a href="#">{{ r.author }}</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

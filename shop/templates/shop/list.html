@@ -1,0 +1,39 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}
+    Category Page
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+
+        {% include 'shop/nav.html' %}
+        <div class="col">
+            <div class="alert alert-info">
+                {% if current_category %}
+                    {{ current_category.name }}
+                {% else %}
+                    All Products
+                {% endif %}
+            </div>
+            <div class="row">
+                {% for product in products %}
+                    <div class="col-4">
+                        <div class="card">
+                            {% if product.image %}
+                                <img class="cart-img-top" src="{{ product.image.url }}" alt="Product Image">
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ product.name }}</h5>
+                                <p class="card-text">{{ product.description }}<span class="badge badge-secondary">{{ product.price }}</span></p>
+                                <a href="{{ product.get_absolute_url }}" class="btn btn-primary">View Detail</a>
+{#                                <a href="{{ product.show_review }}" class="btn btn-primary">View Review</a>#}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

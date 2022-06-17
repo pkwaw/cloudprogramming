@@ -1,0 +1,20 @@
+{% extends 'review/base.html' %}
+
+{% block title %}
+Product Detail
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-4">
+            <img src="{{ product.image.url }}" width="100%">
+        </div>
+        <div class="col">
+            <h1 class="display-6">{{ product.name }}</h1>
+            <p>Price {{ product.price }}￦</p>
+            <h5>Review {{ review.content }}</h5>
+            <a href="/review/create_review/" class="btn btn-primary">View Review</a>
+        </div>
+    </div>
+{% endblock %}

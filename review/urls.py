@@ -9,4 +9,5 @@ urlpatterns = [
     path('create_review/', views.ReviewCreate.as_view()),
     path('login/', views.show_login),
     path('update_review/<int:pk>', views.ReviewUpdate.as_view()),
+    path('search/<str:q>/', views.ReviewSearch.as_view()),
 ]

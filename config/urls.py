@@ -22,6 +22,5 @@ urlpatterns = [
     path('shop/', include('shop.urls')),
     path('review/', include('review.urls')),
     path('markdownx/', include('markdownx.urls')),
-    # path('cart/', include('cart.urls')),
     path('', include('shop.urls')),
 ]

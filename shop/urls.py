@@ -13,13 +13,9 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),
     path('<int:pk>/<str:slug>/new_comment/', views.new_comment),
     path('create_product/', views.ProductCreate.as_view()),
+    path('update_product/<int:pk>', views.ProductUpdate.as_view()),
     path('<slug:category_slug>/', product_in_category, name='product_in_category'),
-    # path('<int:id>/<product_slug>/review/', product_review, name='product_review'),
     path('<int:id>/<product_slug>/', product_detail, name='product_detail'),
-
-    # path('<int:id>/<product_slug>/review/', product_review, name='product_detail'),
-    # path('review/', include('review.urls')),
-
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

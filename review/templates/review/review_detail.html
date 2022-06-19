@@ -1,13 +1,13 @@
 {% extends 'review/base.html' %}
 
 {% block title %}
-    <title>Review - {{ review.name }}</title>
+    Review - {{ review.name }}
 {% endblock %}
 {% block content %}
     {% if user.is_authenticated and user == review.author %}
         <a class="btn btn-info btn-sm float-right" href="/review/update_review/{{ review.pk }}" role="button">
             <i class="fas fa-pen"></i>
-            Edit Review
+            Update Review
         </a>
 
     {% endif %}

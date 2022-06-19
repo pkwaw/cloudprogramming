@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-Product Detail
+    Product Detail
 {% endblock %}
 
 {% block content %}
@@ -12,16 +12,24 @@ Product Detail
             <img src="{{ product.image.url }}" width="100%">
         </div>
         <div class="col">
-            <h1 class="display-6">상품 : {{ product.name }}</h1>
-            <p><span class="badge badge-secondary">Price</span> {{ product.price }} ￦</p>
+            <br>
+            <h1 class="display-3"> {{ product.category }}
+                {% if user.is_authenticated and user.is_superuser %}
+                    <a class="btn btn-info btn-sm float-right" href="/shop/update_product/{{ product.pk }}" role="button">
+                    <i class="fas fa-pen"></i>
+                    Update Product
+                    </a>
+            {% endif %}</h1>
+            <h3 class="display-6">{{ product.name }}</h3>
+            <p class="display-7"><span class="badge badge-secondary">Price</span> {{ product.price }} ￦</p>
 {#            <form action="{% url 'cart:product_add' product.id %}" method="post">#}
 {#                {{ add_to_cart }}#}
 {#                {% csrf_token %}#}
 {#                <input type="submit" class="btn btn-primary btn-sm" value="Add to Cart">#}
 {#            </form>#}
-            <h5>상품 설명<hr/>{{ product.description|linebreaks }}</h5>
+            <h5>{{ product.description|linebreaks }}</h5>
             <div class="card my-4">
-            <h5 class="card-header">Leave a Comment:</h5>
+                <h5 class="card-header">Comment:</h5>
             <div class="card-body">
                 <form id="comment-form" method="POST" action="{{ product.get_absolute_url }}new_comment/">
                     {% csrf_token %}
@@ -31,22 +39,16 @@ Product Detail
             </div>
         </div>
             {% if product.comment_set.exists %}
-        {% for comment in product.comment_set.iterator %}
-        <div class="media mb-4">
-            <div class="media-body" id = "comment-{{ comment.pk }}">
-                <h5 class="mt-0">&nbsp{{ comment.author }} ({{ comment.created_at }})</h5>
-                <p>&nbsp{{ comment.content }}</p>
+                {% for comment in product.comment_set.iterator %}
+                    <div class="media mb-4">
+                        <div class="media-body" id = "comment-{{ comment.pk }}">
+                            <h5 class="mt-0">&nbsp{{ comment.author }} ({{ comment.created_at }})</h5>
+                            <p>&nbsp{{ comment.content }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
             </div>
         </div>
-        {% endfor %}
-    {% endif %}
-    </div>
-        </div>
-
-
-        <!-- Single Comment -->
-
-
-
     </div>
 {% endblock %}

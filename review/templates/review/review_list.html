@@ -4,19 +4,30 @@
 {% endblock %}
 
 {% block content %}
-
-    {% if user.is_authenticated %}
-        {% if user.is_superuser or user.is_staff %}
-            <a class="btn btn-info btn-sm float-right" href="create_review/" role="button">
-                <i class="fas fa-pen"></i>New Review
-            </a>
-        {% endif %}
-    {% endif %}
-    <h1>Review
-        {% if tags %}
-            with tag '{{ tag }}' {% endif %}
+    <h1>
+    Review
+    {% if search_info %}<small class="text-muted">{{ search_info }}</small>{% endif %}
     </h1>
-
+    <div class="row my-3">
+        <div class="col-6">
+            {% if user.is_authenticated %}
+                {% if user.is_superuser or user.is_staff %}
+                    <a class="btn btn-info btn-sm" href="create_review/" role="button">
+                        <i class="fas fa-pen"></i>New Review
+                    </a>
+                {% endif %}
+            {% endif %}
+            <a class="btn btn-info btn-sm" href="review" role="button">Review List</a>
+        </div>
+        <div class="col-6">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for..." id="search-input">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="btn_search" onclick="searchPost();">검색</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     {% for r in review_list %}
         <div class="card mb-4">

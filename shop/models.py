@@ -32,12 +32,8 @@ class Product(models.Model):
     stock = models.PositiveIntegerField()
     available_display = models.BooleanField('Display', default=True)
     available_order = models.BooleanField('Order', default=True)
-
-
     review = models.TextField(blank=True)
-
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
-
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
@@ -51,17 +47,9 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return f'/shop/{self.pk}/{self.slug}/'
-        # return reverse('shop:product_detail', args=[self.id, self.slug])
 
     def get_absolute_url2(self):
         return f'/review/review/{self.name}/'
-    #     # return reverse('shop:product_detail', args=[self.id, self.slug])
-
-    def get_absolute_url3(self):
-        pass
-
-    # def show_review(request):
-    #     return render(request, 'shop/../review/templates/review.html')
 
 class Comment(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -76,24 +64,3 @@ class Comment(models.Model):
     def get_absolute_url(self):
         return f'/shop/{self.pk}/{self.slug}/'
 
-
-
-# class Product_Review(models.Model):
-#     review = models.TextField()
-#
-#     def __str__(self):
-#         return self.review
-#
-#     def get_absolute_url(self):
-#         return f'/shop/{self.pk}/{self.slug}/'
-#         # return f'/shop/{self.pk}/{self.slug}/review/'
-#         # return f'/shop/{self.pk}/'
-#         # return render('shop:product_review', args=[self.id, self.slug])
-
-# class Review(models.Model):
-#     name = models.CharField(max_length=200, db_index=True)
-#     review = models.TextField(blank=True)
-#     description = models.TextField(blank=True)
-#
-#     def get_absolute_url(self):
-#         return f'/shop/'

@@ -1,25 +1,18 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.exceptions import PermissionDenied
-from django.shortcuts import *
-from django.db import models
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import *
 from shop.models import *
+from django.db.models import Q
+
+
 # Create your views here.
 
 class ReviewList(ListView):
     model = Review
 
-    # def get_context_data(self, *, object_list=None, **kwargs):
-    #     context = super(ReviewList, self).get_context_data()
-    #     context['categories'] = Review.objects.all()
-    #     context['count_posts_without_category'] = Review.objects.filter(category=None).count()
-    #
-    #     return context
-
 class ReviewDetail(DetailView):
     model = Review
-
 
 class ReviewCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Review
@@ -59,15 +52,21 @@ def show_tag_reviews(request, slug):
     }
     return render(request, 'review/review_list.html', context)
 
-# def show_reviews(request, slug):
-#     review = Review.objects.get(slug=slug)
-#     review_list = review.objects.filter(review=review)
-#
-#     context = {
-#         # 'reivew':review,
-#         'review_list':review_list
-#     }
-#     return render(request, 'review/review_list.html', context)
-
 def show_login(request):
     return render(request, 'review/login.html')
+
+class ReviewSearch(ReviewList):
+    paginate_by = None
+    def get_queryset(self):
+        q = self.kwargs['q']
+        review_list = Review.objects.filter(Q(title__contains=q) | Q(tags__name__contains=q)
+        ).distinct()
+        return review_list
+
+    def get_context_date(self, **kwargs):
+        context = super(ReviewSearch, self).get_context_data()
+        q = self.kwargs['q']
+        context['search_info'] = f'Search: {q} ({self.get_queryset().count()})'
+
+        return context
+

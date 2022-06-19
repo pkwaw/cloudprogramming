@@ -25,13 +25,14 @@
                     <div class="col-4">
                         <div class="card">
                             {% if product.image %}
-                                <img class="cart-img-top" src="{{ product.image.url }}" alt="Product Image">
+                                <img class="card-img-top" src="{{ product.image.url }}" alt="Product Image">
                             {% endif %}
                             <div class="card-body">
-                                <h5 class="card-title">{{ product.name }}</h5>
-{#                                <p class="card-text">{{ product.description }}#}
+                                <h5 class="card-title">{{ product.category }}</h5>
+                                <h6 class="card-title">{{ product.name }}</h6>
                                 <p class="card-test">
-                                    <span class="badge badge-secondary">{{ product.price }} ￦</span></p>
+                                    <span class="badge badge-secondary">{{ product.price }} ￦</span>
+                                </p>
                                 <a href="{{ product.get_absolute_url }}" class="btn btn-primary">View Detail</a>
                                 <a href="{{ product.get_absolute_url2 }}" class="btn btn-primary">View Review</a>
                             </div>

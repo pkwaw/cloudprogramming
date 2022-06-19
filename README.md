@@ -2,13 +2,13 @@
 
 Django Shop
 
-메인 페이지 : 최근에 올라온 상품과 페이지 소개 사이트 이동 가능
+Main 페이지 : 최근에 올라온 상품과 페이지 소개 사이트 이동 가능
 
-푸터바 : 사이트 이름, 제작자 표시
+footer : 사이트 이름, 제작자 표시
 
-사이트 소개 페이지 : 사이트 소개와 기능들 설명, 페이지 뷰 표시
+about_me 페이지 : 사이트 소개와 기능들 설명, 페이지 뷰 표시
 
-네비게이션바 : 로고 클릭시 홈 이동, Product, Review, login, sign up, social login 구성
+nav bar : 로고 클릭시 홈 이동, Product, Review, login, sign up, social login 구성
 
 Product 페이지 : 전체 상품 표시, 카테고리별로 상품 확인 가능, 상품 상세 페이지 확인 가능, 관리자만 상품 추가 가능
 

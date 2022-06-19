@@ -53,12 +53,28 @@ class Product(models.Model):
         return f'/shop/{self.pk}/{self.slug}/'
         # return reverse('shop:product_detail', args=[self.id, self.slug])
 
-    # def get_absolute_url2(self):
-    #     return f'/review.html/'
+    def get_absolute_url2(self):
+        return f'/review/review/{self.name}/'
     #     # return reverse('shop:product_detail', args=[self.id, self.slug])
+
+    def get_absolute_url3(self):
+        pass
 
     # def show_review(request):
     #     return render(request, 'shop/../review/templates/review.html')
+
+class Comment(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.author} :: {self.content}'
+
+    def get_absolute_url(self):
+        return f'/shop/{self.pk}/{self.slug}/'
 
 
 

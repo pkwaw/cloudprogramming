@@ -1,9 +1,10 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.exceptions import PermissionDenied
-from django.shortcuts import render, redirect
+from django.shortcuts import *
 from django.db import models
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import *
+from shop.models import *
 # Create your views here.
 
 class ReviewList(ListView):
@@ -22,7 +23,7 @@ class ReviewDetail(DetailView):
 
 class ReviewCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Review
-    fields = ['name', 'description', 'review', 'tags']
+    fields = ['title', 'description', 'review', 'tags']
 
     def test_func(self):
         return self.request.user.is_superuser or self.request.user.is_staff
@@ -37,7 +38,7 @@ class ReviewCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 
 class ReviewUpdate(LoginRequiredMixin, UpdateView):
     model = Review
-    fields = ['name', 'description', 'review', 'tags']
+    fields = ['title', 'description', 'review', 'tags']
 
     template_name = 'review/review_form_update.html'
 
@@ -57,3 +58,16 @@ def show_tag_reviews(request, slug):
         'review_list':review_list
     }
     return render(request, 'review/review_list.html', context)
+
+# def show_reviews(request, slug):
+#     review = Review.objects.get(slug=slug)
+#     review_list = review.objects.filter(review=review)
+#
+#     context = {
+#         # 'reivew':review,
+#         'review_list':review_list
+#     }
+#     return render(request, 'review/review_list.html', context)
+
+def show_login(request):
+    return render(request, 'review/login.html')

@@ -16,6 +16,9 @@
                 {% else %}
                     All Products
                 {% endif %}
+                {% if user.is_authenticated and user.is_superuser %}
+                    <a href="/shop/create_product/" class="btn btn-primary float-right">Create Product</a>
+                {% endif %}
             </div>
             <div class="row">
                 {% for product in products %}
@@ -26,9 +29,11 @@
                             {% endif %}
                             <div class="card-body">
                                 <h5 class="card-title">{{ product.name }}</h5>
-                                <p class="card-text">{{ product.description }}<span class="badge badge-secondary">{{ product.price }}</span></p>
+{#                                <p class="card-text">{{ product.description }}#}
+                                <p class="card-test">
+                                    <span class="badge badge-secondary">{{ product.price }} ￦</span></p>
                                 <a href="{{ product.get_absolute_url }}" class="btn btn-primary">View Detail</a>
-{#                                <a href="{{ product.show_review }}" class="btn btn-primary">View Review</a>#}
+                                <a href="{{ product.get_absolute_url2 }}" class="btn btn-primary">View Review</a>
                             </div>
                         </div>
                     </div>

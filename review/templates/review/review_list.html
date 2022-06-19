@@ -21,7 +21,7 @@
     {% for r in review_list %}
         <div class="card mb-4">
             <div class="card-body">
-                <h2 class="card-title">{{ r.name }}</h2>
+                <h2 class="card-title">{{ r.title }}</h2>
                 <p class="card-text">{{ r.description }}</p>
                 <p class="card-text">{{ r.get_content_markdown | truncatewords_html:45 | safe }}</p>
                 <a href="{{ r.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>

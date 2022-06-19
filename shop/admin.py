@@ -17,6 +17,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_editable = ['price', 'stock', 'available_display', 'available_order']
 
 admin.site.register(Product, ProductAdmin)
+admin.site.register(Comment)
 
 # class ReviewAdmin(admin.ModelAdmin):
 #     prepopulated_fields = {'review': ('review',)}

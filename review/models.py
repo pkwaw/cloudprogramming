@@ -16,7 +16,8 @@ class Tag(models.Model):
         return f'/review/tag/{self.slug}/'
 
 class Review(models.Model):
-    name = models.CharField(max_length=200, db_index=True)
+    title = models.CharField(max_length=200, db_index=True)
+    slug = models.SlugField(max_length=200, allow_unicode=True)
     description = models.TextField(blank=True)
     review = MarkdownxField()
 
@@ -29,7 +30,7 @@ class Review(models.Model):
 
 
     def __str__(self):
-        return f'[{self.pk}] {self.name} :: {self.author}'
+        return f'[{self.pk}] {self.title} :: {self.author}'
 
     def get_absolute_url(self):
         return f'/review/review/{self.pk}/'

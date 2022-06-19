@@ -16,6 +16,7 @@ urlpatterns = [
     path('update_product/<int:pk>', views.ProductUpdate.as_view()),
     path('<slug:category_slug>/', product_in_category, name='product_in_category'),
     path('<int:id>/<product_slug>/', product_detail, name='product_detail'),
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -11,11 +11,9 @@
     <div class="row my-3">
         <div class="col-6">
             {% if user.is_authenticated %}
-                {% if user.is_superuser or user.is_staff %}
-                    <a class="btn btn-info btn-sm" href="create_review/" role="button">
-                        <i class="fas fa-pen"></i>New Review
-                    </a>
-                {% endif %}
+                <a class="btn btn-info btn-sm" href="create_review/" role="button">
+                    <i class="fas fa-pen"></i>New Review
+                </a>
             {% endif %}
             <a class="btn btn-info btn-sm" href="review" role="button">Review List</a>
         </div>

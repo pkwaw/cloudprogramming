@@ -33,9 +33,10 @@ class Product(models.Model):
     available_display = models.BooleanField('Display', default=True)
     available_order = models.BooleanField('Order', default=True)
     review = models.TextField(blank=True)
-    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name='author_user')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
 
 
     class Meta:

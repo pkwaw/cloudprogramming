@@ -22,11 +22,6 @@
             {% endif %}</h1>
             <h3 class="display-6">{{ product.name }}</h3>
             <p class="display-7"><span class="badge badge-secondary">Price</span> {{ product.price }} ￦</p>
-{#            <form action="{% url 'cart:product_add' product.id %}" method="post">#}
-{#                {{ add_to_cart }}#}
-{#                {% csrf_token %}#}
-{#                <input type="submit" class="btn btn-primary btn-sm" value="Add to Cart">#}
-{#            </form>#}
             <h5>{{ product.description|linebreaks }}</h5>
             <div class="card my-4">
                 <h5 class="card-header">Comment:</h5>

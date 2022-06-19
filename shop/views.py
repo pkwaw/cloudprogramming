@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, get_object_or_404
@@ -98,3 +99,4 @@ class ProductUpdate(LoginRequiredMixin, UpdateView):
             return super(ProductUpdate, self).dispatch(request, *args, **kwargs)
         else:
             raise PermissionDenied
+

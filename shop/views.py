@@ -75,6 +75,8 @@ def signup(request):
 class ProductCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Product
     fields = ['category', 'name', 'slug', 'image', 'description', 'price', 'stock', 'available_display', 'available_order', 'author']
+    def test_func(self):
+        return self.request.user.is_superuser
 
     def form_valid(self, form):
         current_user = self.request.user

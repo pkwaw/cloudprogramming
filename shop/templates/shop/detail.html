@@ -24,9 +24,10 @@
             <p class="display-7"><span class="badge badge-secondary">Price</span> {{ product.price }} ￦</p>
             <h5>{{ product.description|linebreaks }}</h5>
             <div class="card my-4">
+
                 <h5 class="card-header">Comment:</h5>
             <div class="card-body">
-                <form id="comment-form" method="POST" action="{{ product.get_absolute_url }}new_comment/">
+                <form id="comment-form" method="POST" action="{{ product.get_absolute_url }}new_comment">
                     {% csrf_token %}
                     {{ comment_form | crispy }}
                     <button type="submit" class="btn btn-primary">Submit</button>

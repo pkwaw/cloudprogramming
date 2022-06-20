@@ -52,7 +52,7 @@ def new_comment(request, pk, slug):
                 comment.product = product
                 comment.author = request.user
                 comment.save()
-                return redirect(comment.get_absolute_url())
+                return redirect(product.get_absolute_url())
         else:
             return redirect(product.get_absolute_url())
     else:

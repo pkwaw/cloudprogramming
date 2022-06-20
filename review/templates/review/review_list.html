@@ -32,7 +32,7 @@
             <div class="card-body">
                 <h2 class="card-title">{{ r.title }}</h2>
                 <p class="card-text">{{ r.description }}</p>
-                <p class="card-text">{{ r.get_content_markdown | truncatewords_html:45 | safe }}</p>
+{#                <p class="card-text">{{ r.get_content_markdown | truncatewords_html:45 | safe }}</p>#}
                 <a href="{{ r.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
                 {% if r.tags.exists %}
                     <br/>

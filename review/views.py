@@ -14,20 +14,20 @@ class ReviewList(ListView):
 class ReviewDetail(DetailView):
     model = Review
 
-class ReviewCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+class ReviewCreate(CreateView):
     model = Review
     fields = ['title', 'description', 'review', 'tags']
 
     def test_func(self):
-        return self.request.user.is_superuser or self.request.user.is_staff
+        pass
 
     def form_valid(self, form):
         current_user = self.request.user
-        if current_user.is_authenticated and (current_user.is_staff or current_user.is_superuser):
+        if current_user.is_authenticated:
             form.instance.author = current_user
             return super(ReviewCreate, self).form_valid(form)
         else:
-            return redirect('/review/')
+            return redirect('/review')
 
 class ReviewUpdate(LoginRequiredMixin, UpdateView):
     model = Review
@@ -69,4 +69,3 @@ class ReviewSearch(ReviewList):
         context['search_info'] = f'Search: {q} ({self.get_queryset().count()})'
 
         return context
-

@@ -1,4 +1,6 @@
-# cloudprogramming
+# cloudprogramming 기말고사 프로젝트 
+
+쇼핑몰 및 게시판 구현
 
 Django Shop
 
